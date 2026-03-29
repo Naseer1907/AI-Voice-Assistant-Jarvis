@@ -1,0 +1,25 @@
+Date: 8/7/2023
+Time: 20:14
+Phone Number: +917899682867
+Message: hi how are you
+--------------------
+Date: 8/7/2023
+Time: 20:27
+Phone Number: +917899682867
+Message: hi dad
+--------------------
+Date: 8/7/2023
+Time: 23:25
+Phone Number: +917899682867
+Message: hi Nabeel
+--------------------
+Date: 9/7/2023
+Time: 10:56
+Phone Number: +918147779840
+Message: send message
+--------------------
+Date: 9/7/2023
+Time: 10:59
+Phone Number: recipient_name
+Message: send WhatsApp message
+--------------------
