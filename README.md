@@ -7,26 +7,33 @@
 
 ## 🧠 Overview
 
-JARVIS is a fully offline-capable, voice-activated Python assistant that handles a wide range of tasks — from sending WhatsApp messages and fetching live weather to playing YouTube videos and translating languages — all triggered by a single wake word.
+JARVIS is a fully voice-activated Python assistant that handles a wide range of real-world tasks — from setting alarms and running automations to speed testing, focus mode, games, and WhatsApp messaging — all triggered by voice commands.
 
-Built as a production-ready personal assistant and a real-world cloud/Python portfolio project, JARVIS is designed with extensibility in mind, making it easy to add new features or integrate with external APIs.
+Built as a modular, production-ready personal assistant and a real-world Python portfolio project, each feature lives in its own dedicated module, making the codebase clean, extensible, and easy to demo.
 
 ---
 
 ## ✨ Features
 
-| Feature | Description |
+| Module | Feature |
 |---|---|
-| 🎙️ **Voice Recognition** | Listens for voice commands using `speech_recognition` |
-| 🔊 **Text-to-Speech** | Responds with natural speech via `pyttsx3` |
-| 📱 **WhatsApp Messaging** | Sends messages hands-free using `pywhatkit` |
-| 🌦️ **Live Weather** | Fetches real-time weather data via OpenWeatherMap API |
-| ▶️ **YouTube Playback** | Plays any YouTube video on voice command |
-| 🔍 **Google Search** | Launches browser searches instantly |
-| 🌐 **Language Translation** | Translates text across multiple languages |
-| ⏰ **Reminders** | Sets and manages time-based reminders |
-| 🌐 **Internet Speed Check** | Runs a live speed test on demand |
-| 🕐 **Date & Time** | Tells current time and date |
+| `alarm.py` | 🔔 Set and trigger voice alarms |
+| `Automation.py` | ⚙️ Automate system-level tasks |
+| `Cal.py` | 📅 Calendar & date queries |
+| `Calculatenumbers.py` | 🔢 Voice-driven calculator |
+| `calls.py` | 📞 Call management via voice |
+| `Dictapp.py` | 📖 Dictionary & word definitions |
+| `exit_terminal.py` | 🚪 Shutdown / exit commands |
+| `Features.py` | 🧩 Core feature dispatcher |
+| `file.py` | 🗂️ File management operations |
+| `FocusMode.py` | 🎯 Focus/productivity mode |
+| `FocusGraph.py` | 📊 Focus session visualizer |
+| `game.py` | 🎮 Built-in voice games |
+| `GreetMe.py` | 👋 Personalized greeting on startup |
+| `INTRO.py` | 🎬 JARVIS intro sequence |
+| `Jarvis_main.py` | 🧠 Main entry point & command loop |
+| `jarvis_speed.py` | 🌐 Internet speed test |
+| `keyboard.py` | ⌨️ Keyboard automation |
 
 ---
 
@@ -34,12 +41,13 @@ Built as a production-ready personal assistant and a real-world cloud/Python por
 
 - **Language:** Python 3.x
 - **Voice I/O:** `speech_recognition`, `pyttsx3`, `pyaudio`
-- **Messaging:** `pywhatkit`
+- **Automation:** `pyautogui`, `keyboard`
+- **Web & Messaging:** `pywhatkit`, `webbrowser`
 - **Weather:** OpenWeatherMap REST API
 - **Translation:** `googletrans`
 - **Speed Test:** `speedtest-cli`
-- **Web Control:** `webbrowser`, `pywhatkit`
 - **Scheduling:** `datetime`, `time`
+- **Packaging:** PyInstaller
 
 ---
 
@@ -47,20 +55,27 @@ Built as a production-ready personal assistant and a real-world cloud/Python por
 
 ```
 AI-Voice-Assistant-Jarvis/
-├── jarvis.py            # Main entry point — wake word loop & command dispatcher
-├── features/
-│   ├── weather.py       # OpenWeatherMap API integration
-│   ├── whatsapp.py      # WhatsApp messaging via pywhatkit
-│   ├── youtube.py       # YouTube playback
-│   ├── translator.py    # Language translation
-│   ├── reminder.py      # Reminder scheduling
-│   └── speedtest.py     # Internet speed check
-├── utils/
-│   ├── speak.py         # TTS helper (pyttsx3)
-│   └── listen.py        # Speech recognition helper
-├── requirements.txt     # All dependencies
-├── .env.example         # Template for API keys
-└── README.md
+└── Jarvis Project/
+    ├── Jarvis_main.py        # 🧠 Main entry — wake word loop & command dispatcher
+    ├── Features.py           # 🧩 Core feature router
+    ├── INTRO.py              # 🎬 Startup intro sequence
+    ├── GreetMe.py            # 👋 Personalized greeting
+    ├── alarm.py              # 🔔 Alarm system
+    ├── Automation.py         # ⚙️ System automation
+    ├── Cal.py                # 📅 Calendar queries
+    ├── Calculatenumbers.py   # 🔢 Voice calculator
+    ├── calls.py              # 📞 Call handling
+    ├── Dictapp.py            # 📖 Dictionary lookup
+    ├── exit_terminal.py      # 🚪 Exit/shutdown handler
+    ├── file.py               # 🗂️ File operations
+    ├── FocusMode.py          # 🎯 Focus/productivity mode
+    ├── FocusGraph.py         # 📊 Focus session graph
+    ├── game.py               # 🎮 Voice-controlled game
+    ├── jarvis_speed.py       # 🌐 Internet speed test
+    ├── keyboard.py           # ⌨️ Keyboard automation
+    ├── Installer.py          # 📦 Dependency installer
+    ├── requirements.txt      # 📋 All dependencies
+    └── README.md
 ```
 
 ---
@@ -77,7 +92,7 @@ AI-Voice-Assistant-Jarvis/
 
 ```bash
 git clone https://github.com/Naseer1907/AI-Voice-Assistant-Jarvis.git
-cd AI-Voice-Assistant-Jarvis
+cd "AI-Voice-Assistant-Jarvis/Jarvis Project"
 ```
 
 ### 2. Install dependencies
@@ -86,54 +101,56 @@ cd AI-Voice-Assistant-Jarvis
 pip install -r requirements.txt
 ```
 
-> **Note:** If you encounter issues with `pyaudio` on Windows, install it via:
+Or run the built-in installer:
+
+```bash
+python Installer.py
+```
+
+> **Note:** If you hit issues with `pyaudio` on Windows:
 > ```bash
 > pip install pipwin
 > pipwin install pyaudio
 > ```
 
-### 3. Set up your API keys
+### 3. Set up API keys
 
-Copy the example env file and add your keys:
-
-```bash
-cp .env.example .env
-```
-
-Then edit `.env`:
+Create a `.env` file in the project folder:
 
 ```env
 OPENWEATHER_API_KEY=your_openweathermap_api_key_here
 ```
 
-Get your free key at [openweathermap.org](https://openweathermap.org/api)
+Get a free key at [openweathermap.org](https://openweathermap.org/api)
 
 ### 4. Run JARVIS
 
 ```bash
-python jarvis.py
+python Jarvis_main.py
 ```
 
-Say **"Hey JARVIS"** to wake the assistant, then give a command.
+Speak to JARVIS after the intro — it's listening!
 
 ---
 
 ## 🗣️ Example Commands
 
 ```
-"Hey JARVIS, what's the weather in Hyderabad?"
-"Hey JARVIS, send a WhatsApp message to Mom"
-"Hey JARVIS, play Blinding Lights on YouTube"
-"Hey JARVIS, translate hello to Spanish"
-"Hey JARVIS, set a reminder for 6 PM"
-"Hey JARVIS, search Python tutorials on Google"
-"Hey JARVIS, what's the internet speed?"
-"Hey JARVIS, what time is it?"
+"JARVIS, set an alarm for 7 AM"
+"JARVIS, what's the weather in Hyderabad?"
+"JARVIS, send a WhatsApp message to Mom"
+"JARVIS, play Blinding Lights on YouTube"
+"JARVIS, translate hello to Hindi"
+"JARVIS, what is the speed of my internet?"
+"JARVIS, start focus mode"
+"JARVIS, define serendipity"
+"JARVIS, calculate 25 multiplied by 4"
+"JARVIS, let's play a game"
 ```
 
 ---
 
-## 📦 Requirements
+## 📦 Dependencies
 
 ```
 speechrecognition
@@ -143,6 +160,8 @@ pywhatkit
 requests
 googletrans==4.0.0-rc1
 speedtest-cli
+pyautogui
+keyboard
 python-dotenv
 ```
 
@@ -156,26 +175,27 @@ pip install -r requirements.txt
 
 ## 🔮 Roadmap
 
-- [ ] Wake-word detection without button press (always-on mode)
+- [ ] Always-on wake word detection (no button press needed)
 - [ ] GUI dashboard with real-time command display
-- [ ] Smart home integration (IoT device control)
+- [ ] Smart home / IoT device integration
 - [ ] Multilingual voice support (Hindi, Telugu)
-- [ ] Automotive integration — navigation & music adaptation (TATA Motors collaboration target)
+- [ ] Automotive integration — navigation & music adaptation *(TATA Motors target)*
 - [ ] Emotion-aware response tuning
 
 ---
 
 ## 🏆 Highlights
 
-- Submitted to **TATA Innovation Challenge 2025** as part of the *AI Co-Pilot: Revolutionizing Driver Safety* project
-- Designed with a modular architecture to support plug-and-play feature extensions
-- Handles real-world API integrations with error fallback and retry logic
+- 🏅 Submitted to **TATA Innovation Challenge 2025** as part of *AI Co-Pilot: Revolutionizing Driver Safety*
+- 🧩 Fully modular architecture — each feature is a standalone, independently testable module
+- ⚙️ Ships with `Installer.py` for zero-friction onboarding
+- 📦 PyInstaller-ready for standalone `.exe` distribution
 
 ---
 
 ## 🤝 Contributing
 
-Pull requests are welcome! For major feature additions, please open an issue first to discuss the approach.
+Pull requests are welcome! For major changes, open an issue first.
 
 ```bash
 git checkout -b feature/your-feature-name
@@ -185,13 +205,16 @@ git push origin feature/your-feature-name
 
 ---
 
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
 ## 👨‍💻 Author
 
 **Naseer**  
-Cloud Enginner · AWS | Python | DevOps  
+AWS Cloud Engnieer | Python | DevOps  
 [GitHub](https://github.com/Naseer1907) · [LinkedIn](https://linkedin.com/in/naseer1907)
 
 ---

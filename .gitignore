@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# PyInstaller build output (this was causing HTML/TeX to dominate GitHub language stats)
+build/
+dist/
+*.spec
+
+# VS Code settings
+.vscode/
+
+# Runtime data files
+Alarmtext.txt
+focus.txt
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
